@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui widgets
 
 TARGET = TrayIconDemo
 TEMPLATE = app
@@ -16,3 +16,8 @@ SOURCES += main.cpp\
 HEADERS  += trayicondemo.h
 
 FORMS    += trayicondemo.ui
+
+RESOURCES += \
+    res.qrc
+
+msvc: QMAKE_CXXFLAGS += -source-charset:utf-8

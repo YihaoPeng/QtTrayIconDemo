@@ -5,7 +5,7 @@
 TrayIconDemo::TrayIconDemo(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::TrayIconDemo),
-    _strIconPath("D:/QtPorjects/TrayIconDemo/res/barcaTray.ico")
+    _strIconPath(":/res/barcaTray.ico")
 {
     ui->setupUi(this);
 
@@ -31,8 +31,8 @@ void TrayIconDemo::createTrayIcon()
     _pTrayIcon = new QSystemTrayIcon(this);
     _pTrayIcon->setIcon(QIcon(_strIconPath));
     _pTrayIcon->setContextMenu(_pMenu);
-    _pTrayIcon->setToolTip(tr("支付盾"));
-    _pTrayIcon->showMessage(tr("支付盾"), tr("支付盾即将插入"),
+    _pTrayIcon->setToolTip(QString::fromLocal8Bit("支付盾"));
+    _pTrayIcon->showMessage(QString::fromLocal8Bit("支付盾"), QString::fromLocal8Bit("支付盾即将插入"),
         QSystemTrayIcon::Information, 5000);
     _pTrayIcon->show();
 
@@ -43,10 +43,10 @@ void TrayIconDemo::createTrayIcon()
 
 void TrayIconDemo::CreatTrayMenu()
 {
-    _pminiSizeAction = new QAction("最小化(&N)",this);
-    _pmaxSizeAction = new QAction("最大化(&X)",this);
-    _prestoreWinAction = new QAction("还 原(&R)",this);
-    _pquitAction = new QAction("退出(&Q)",this);
+    _pminiSizeAction = new QAction(QString::fromLocal8Bit("最小化(&N)"),this);
+    _pmaxSizeAction = new QAction(QString::fromLocal8Bit("最大化(&X)"),this);
+    _prestoreWinAction = new QAction(QString::fromLocal8Bit("还 原(&R)"),this);
+    _pquitAction = new QAction(QString::fromLocal8Bit("退出(&Q)"),this);
 
     connect(_pminiSizeAction,SIGNAL(triggered()),this,SLOT(hide()));
     connect(_pmaxSizeAction,SIGNAL(triggered()),this,SLOT(showMaximized()));
@@ -79,7 +79,7 @@ void TrayIconDemo::closeEvent(QCloseEvent *event)
 {
     if (_pTrayIcon->isVisible())
     {
-        _pTrayIcon->showMessage("支付盾","双击托盘图标可恢复窗口",QSystemTrayIcon::Information,3000);
+        _pTrayIcon->showMessage(QString::fromLocal8Bit("支付盾"),QString::fromLocal8Bit("双击托盘图标可恢复窗口"),QSystemTrayIcon::Information,3000);
 
         this->hide();     //最小化
         event->ignore();
@@ -89,13 +89,3 @@ void TrayIconDemo::closeEvent(QCloseEvent *event)
         event->accept();
     }
 }
-
-
-
-
-
-
-
-
-
-
